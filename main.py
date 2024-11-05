@@ -1,8 +1,8 @@
 import discord
-import database
-import weather
-from discord.ext import commands
 
+from discord.ext import commands
+from database import search_database, add_record, search_by_user
+from weather import get_weather
 
 class Client(commands.Bot):
     async def on_ready(self):
@@ -18,12 +18,12 @@ class Client(commands.Bot):
     async def on_message(self, message):
         if message.author == self.user:
             return
-        
-        current_user = database.search_database(message.author)
-
+                
         if message.content.startswith('hello'):
-            if message.author == current_user:
-                database.search_by_user(current_user)
+            user_name = message.author
+            current_user = search_database(user_name)
+            if user_name == current_user:
+                search_by_user(current_user)
             else:
                 await message.channel.send(f'Hi there {message.author}, please use the slash ("/") command and choose "user" to add your details!')
             
@@ -42,7 +42,7 @@ GUILD_ID = discord.Object(id=1283356950641381396)
 # create a slash command to get weather by city
 @client.tree.command(name="city_and_weather", description="Get Weather by city!", guild=GUILD_ID)
 async def your_city(interaction: discord.Interaction, city: str):
-    await interaction.response.send_message(weather.get_weather(city))
+    await interaction.response.send_message(get_weather(city))
 
 
 # create a slash command to access a user from a database then printout his weather
@@ -54,7 +54,7 @@ async def your_city(interaction: discord.Interaction, city: str):
 # create a slash command to enter the username and their city
 @client.tree.command(name="user", description="Enter your name and your city!", guild=GUILD_ID)
 async def add_name_and_city(interaction: discord.Interaction, name: str, city: str):
-    await interaction.response.send_message(database.add_record(name, city))
+    await interaction.response.send_message(add_record(name, city))
 
 
 client.run('TOKEN')
