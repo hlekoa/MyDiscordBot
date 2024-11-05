@@ -40,4 +40,15 @@ def search_by_user(user):
     return "Please wait while I fetch your weather........"
 
 
+# search the database 
+def search_database(user):
+    cur.execute("SELECT * FROM users WHERE user_name = (?)", (user,))
+    items = cur.fetchall()
+    for item in items:
+        my_user = item[0]
+        return my_user
+    
+    conn.commit()
+    
+
 users_table()
