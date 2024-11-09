@@ -20,10 +20,10 @@ class Client(commands.Bot):
             return
                 
         if message.content.startswith('hello'):
-            user_name = message.author
+            user_name = str(message.author)
             current_user = search_database(user_name)
             if user_name == current_user:
-                search_by_user(current_user)
+                search_by_user(get_weather(current_user))
             else:
                 await message.channel.send(f'Hi there {message.author}, please use the slash ("/") command and choose "user" to add your details!')
             
@@ -44,13 +44,7 @@ GUILD_ID = discord.Object(id=1283356950641381396)
 async def your_city(interaction: discord.Interaction, city: str):
     await interaction.response.send_message(get_weather(city))
 
-
-# create a slash command to access a user from a database then printout his weather
-#@client.tree.command(name="search_user", description="Search weather by user!", guild=GUILD_ID)
-#async def search_by_user(interaction: discord.Interaction, user: str):
-#   await interaction.response.send_message(database.search_by_user(user))
-
-
+    
 # create a slash command to enter the username and their city
 @client.tree.command(name="user", description="Enter your name and your city!", guild=GUILD_ID)
 async def add_name_and_city(interaction: discord.Interaction, name: str, city: str):
