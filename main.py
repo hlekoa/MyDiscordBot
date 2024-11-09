@@ -46,7 +46,7 @@ async def your_city(interaction: discord.Interaction, city: str):
 
     
 # create a slash command to enter the username and their city
-@client.tree.command(name="user", description="Enter your name and your city!", guild=GUILD_ID)
+@client.tree.command(name="user", description="Enter your discord username and your city!", guild=GUILD_ID)
 async def add_name_and_city(interaction: discord.Interaction, name: str, city: str):
     await interaction.response.send_message(add_record(name, city))
 
