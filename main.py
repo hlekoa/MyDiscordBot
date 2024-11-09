@@ -23,7 +23,7 @@ class Client(commands.Bot):
             user_name = str(message.author)
             current_user = search_database(user_name)
             if user_name == current_user:
-                search_by_user(get_weather(current_user))
+                search_by_user(current_user)
             else:
                 await message.channel.send(f'Hi there {message.author}, please use the slash ("/") command and choose "user" to add your details!')
             
