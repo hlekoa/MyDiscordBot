@@ -32,23 +32,23 @@ def search_by_user(user):
     cur.execute("SELECT * FROM users WHERE user_name = (?)", (user,))
     items = cur.fetchall()
     for item in items:
-        the_city = item[1]
-        get_weather(the_city)
+        user_name = item[0]
+        return user_name
     # commit commands
     conn.commit()
 
-    return "Please wait while I fetch your weather........"
-
-
-# search the database 
+# search the database for city and get weather 
 def search_database(user):
     cur.execute("SELECT * FROM users WHERE user_name = (?)", (user,))
     items = cur.fetchall()
     for item in items:
-        my_user = item[0]
-        return my_user
-    
+        the_city = item[1]
+        my_weather = get_weather(the_city)
+        return my_weather
+
     conn.commit()
+
+    
     
 
 users_table()

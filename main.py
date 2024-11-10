@@ -1,7 +1,7 @@
 import discord
 
 from discord.ext import commands
-from database import search_database, add_record, search_by_user
+from database import add_record, search_by_user, search_database
 from weather import get_weather
 
 class Client(commands.Bot):
@@ -20,10 +20,9 @@ class Client(commands.Bot):
             return
                 
         if message.content.startswith('hello'):
-            user_name = str(message.author)
-            current_user = search_database(user_name)
-            if user_name == current_user:
-                search_by_user(current_user)
+            current_user = message.author
+            if search_by_user(str(current_user)):
+                await message.channel.send(search_database(str(current_user)))
             else:
                 await message.channel.send(f'Hi there {message.author}, please use the slash ("/") command and choose "user" to add your details!')
             
