@@ -44,6 +44,7 @@ def search_database(user):
     for item in items:
         the_city = item[1]
         my_weather = get_weather(the_city)
+    
         return my_weather
 
     conn.commit()

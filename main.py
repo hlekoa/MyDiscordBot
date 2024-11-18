@@ -50,4 +50,4 @@ async def add_name_and_city(interaction: discord.Interaction, name: str, city: s
     await interaction.response.send_message(add_record(name, city))
 
 
-client.run('TOKEN')
+client.run('MTI5MzYyNzU5NzQxNDA3MjM5MQ.GXoVnW.dsmBMPQ3vJ0ampur_MN2VCUNJWJxrwC9RGvojA')
