@@ -1,8 +1,8 @@
 import discord
 
 from discord.ext import commands
-from database import add_record, search_by_user, search_database, delete_user
-from weather import get_weather
+from MyDiscordBot.src.database import add_record, search_by_user, search_database, delete_user
+from MyDiscordBot.src.weather import get_weather
 
 class Client(commands.Bot):
     async def on_ready(self):
@@ -18,7 +18,7 @@ class Client(commands.Bot):
     async def on_message(self, message):
         if message.author == self.user:
             return
-                
+
         if message.content.startswith('hello'):
             current_user = message.author
             if search_by_user(str(current_user)):
@@ -50,7 +50,7 @@ async def add_name_and_city(interaction: discord.Interaction, name: str, city: s
     await interaction.response.send_message(add_record(name, city))
 
 
-# create a slash command to delete a username from the databse 
+# create a slash command to delete a username from the database
 @client.tree.command(name="delete_user", description="Delete a username", guild=GUILD_ID)
 async def delete_username(interaction: discord.Interaction, name: str):
     await interaction.response.send_message(delete_user(name))

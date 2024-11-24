@@ -1,6 +1,6 @@
 import sqlite3
 
-from weather import get_weather
+from MyDiscordBot.src.weather import get_weather
 
 
 # connect to database and create cursor
