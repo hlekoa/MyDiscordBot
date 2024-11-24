@@ -9,7 +9,7 @@ class Client(commands.Bot):
         print(f'Logged on as {self.user}!')
         # force the slash commands to sync with discord and if there's an error print it on terminal
         try:
-            guild = discord.Object(id=1283356950641381396)
+            guild = discord.Object(id="disc_id")
             synced = await self.tree.sync(guild=guild)
             print(f'Synced {len(synced)} commands to guild {guild.id}')
         except Exception as e:
@@ -31,7 +31,7 @@ intents.message_content = True
 client = Client(command_prefix="!", intents=intents)
 
 # GUILD object that represent the discord server (id is the channel id)
-GUILD_ID = discord.Object(id=1283356950641381396)
+GUILD_ID = discord.Object(id="DISC_ID")
 
 
 # create a slash command to get weather by city
