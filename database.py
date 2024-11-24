@@ -49,7 +49,15 @@ def search_database(user):
 
     conn.commit()
 
+
+# delete a record 
+def delete_user(user):
+    cur.execute("DELETE from users WHERE user_name = (?)", (user, ))
     
+    conn.commit()
+        
+    return f"Username {user} has been deleted from the database!"
+
     
 
 users_table()

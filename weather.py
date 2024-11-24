@@ -3,7 +3,7 @@ import requests
 
 def get_weather(city):
     # variables to store the API key/token and the URL
-    api_key = "API_KEY"
+    api_key = "bb488a390f508c273897a99e0e8f0f21"
     base_url = "https://api.openweathermap.org/data/2.5/weather?units=metric"
 
     # receive input from user and store the city name in the variable city
